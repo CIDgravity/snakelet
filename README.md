@@ -45,6 +45,8 @@ Also checkout [the test file](./config_test.go) and [the source code](./config.g
 
 ## License
 
+Copyright (c), 2022, CIDgravity.
+
 All this work is licensed under permissive open-source license.
 
 Except written otherwise in particular files, this work is dual-licensed under both [Apache v2](./LICENSE-APACHE) and [MIT](./LICENSE-MIT).
