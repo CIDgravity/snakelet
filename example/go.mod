@@ -2,7 +2,7 @@ module example
 
 go 1.18
 
-require github.com/CIDgravity/snakelet v0.3.0
+require github.com/CIDgravity/snakelet v0.3.3
 
 require (
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
