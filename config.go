@@ -31,9 +31,9 @@ func InitAndLoadWithParams(configStruct interface{}, cfgFile string, prefix stri
 	return InitAndLoadWithParamsAndLogger(configStruct, cfgFile, prefix, &DefaultLogger{})
 }
 
-// Prefix must be unique in between each projects. Env variables are only set if a prefix has been set
-// if cfgFile == "", it will used config.yaml in the directory where the executable is located.
-// else it will use cfgFile (full path required)
+// The `prefix` must be unique between each projects. Env variables are only set if a prefix has been set.
+// if `cfgFile` == "", it search for `config.yaml` in the directory where the executable is located,
+// else `snakelet` will use cfgFile (full path required)
 func InitAndLoadWithParamsAndLogger(configStruct interface{}, cfgFile string, prefix string, logger Logger) error {
 
 	// preprare config file and env variables
@@ -99,8 +99,8 @@ func InitAndLoadWithParamsAndLogger(configStruct interface{}, cfgFile string, pr
 }
 
 // Only used for debug purpose during development (print to standard output)
-// DO NOT USE IT IN PRODUCTION OR CRITICAL INFORMATION FROM CONF MAY BE STORED IN LOG SERVERS
-// WARNING: this will print the entire configuration!
+// DO NOT USE IT IN PRODUCTION OR CRITICAL INFORMATION FROM CONF MAY BE STORED IN LOG SERVERS.
+// THIS WILL PRINT THE ENTIRE CONFIGURATION!
 func Debug() {
 	viper.GetViper().Debug()
 }
