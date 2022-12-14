@@ -1,6 +1,6 @@
 # snakelet
 
-Ultra minimal go config lib based on [viper](https://github.com/spf13/viper).
+Ultra minimal go config lib based on [viper](https://github.com/spf13/viper) and [validator](https://github.com/go-playground/validator).
 
 Goals:
 - simplicity => correctly validate once and return a nice statically typed struct that contains all the config
