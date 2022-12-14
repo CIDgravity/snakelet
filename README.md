@@ -9,6 +9,7 @@ Alternatively, the source code itself can be used for inspiration as to how to u
 ```go
 import (
 	snakelet "github.com/CIDgravity/snakelet"
+	"fmt"
 )
 
 type DatabaseConfig struct {
@@ -57,7 +58,9 @@ func GetDefaultConfig() *Config {
 // Get config struct and default variables
 conf := GetDefaultConfig()
 // this will mutate the `conf` variable:
-err := snakelet.InitAndLoad(conf, "/opt/company/project.yaml", "company-project")
+err := snakelet.InitAndLoadWithParams(conf, "/opt/company/project.yaml", "company-project")
+// or use default config, see source code for details:
+// err := snakelet.InitAndLoad(conf)
 if err != nil {
 	return fmt.Errorf("Unable to init and load config: %w", err)
 }

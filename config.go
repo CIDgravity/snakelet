@@ -12,25 +12,29 @@ import (
 )
 
 type Logger interface {
-	Printf(format string, a ...any)
+	Printf(format string)
 }
 
 type DefaultLogger struct {
 	logger Logger
 }
 
-func (p *DefaultLogger) Printf(format string, v ...any) {
-	fmt.Printf(format+"\n", v...)
+func (p *DefaultLogger) Printf(format string) {
+	fmt.Printf(format + "\n")
 }
 
-func InitAndLoad(configStruct interface{}, cfgFile string, prefix string) error {
-	return InitAndLoadWithLogger(configStruct, cfgFile, prefix, &DefaultLogger{})
+func InitAndLoad(configStruct interface{}) error {
+	return InitAndLoadWithParams(configStruct, "", "")
+}
+
+func InitAndLoadWithParams(configStruct interface{}, cfgFile string, prefix string) error {
+	return InitAndLoadWithParamsAndLogger(configStruct, cfgFile, prefix, &DefaultLogger{})
 }
 
 // Prefix must be unique in between each projects. Env variables are only set if a prefix has been set
 // if cfgFile == "", it will used config.yaml in the directory where the executable is located.
 // else it will use cfgFile (full path required)
-func InitAndLoadWithLogger(configStruct interface{}, cfgFile string, prefix string, logger Logger) error {
+func InitAndLoadWithParamsAndLogger(configStruct interface{}, cfgFile string, prefix string, logger Logger) error {
 
 	// preprare config file and env variables
 	if prefix != "" {
