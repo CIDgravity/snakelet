@@ -14,6 +14,12 @@ How?:
 
 Instead of using the lib directly, the source code itself can be used for inspiration as to how to use `viper` internally to achieve the goals set above.
 
+## Install
+
+```
+go get github.com/CIDgravity/snakelet
+```
+
 ## Usage
 
 ```go
