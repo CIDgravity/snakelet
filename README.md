@@ -16,8 +16,57 @@ Instead of using the lib directly, the source code itself can be used for inspir
 
 ## Usage
 
-TL;DR:
 ```go
+package main
+
+import (
+	"fmt"
+
+	snakelet "github.com/CIDgravity/snakelet"
+)
+
+type DatabaseConfig struct {
+	User     string `mapstructure:"user" validate:"required"`
+	Password string `mapstructure:"password" validate:"required"`
+	Host     string `mapstructure:"host" validate:"required"`
+	Port     int    `mapstructure:"port" validate:"required"`
+	Name     string `mapstructure:"name" validate:"required"`
+	SslMode  string `mapstructure:"sslMode"`
+	MaxConns int    `mapstructure:"maxConns"`
+}
+
+type LogsConfig struct {
+	LogLevel                string `mapstructure:"level"` // error | warn | info - case insensitive
+	BackendLogsToJsonFormat bool   `mapstructure:"isJSON"`
+	DatabaseSlowThreshold   string `mapstructure:"databaseSlowThreshold"` // Value under which a query is considered slow. "1ms", "1s", etc - anything that's parsable by time.ParseDuration(interval).
+}
+
+type Config struct {
+	Database DatabaseConfig `mapstructure:"database"`
+	Logs     LogsConfig     `mapstructure:"log"`
+	Server   ServerConfig   `mapstructure:"server"`
+}
+
+type ServerConfig struct {
+	Port int `mapstructure:"port" validate:"required"`
+}
+
+// only set default for non-required tag
+func GetDefaultConfig() *Config {
+	return &Config{
+		Database: DatabaseConfig{
+			SslMode:  "disable",
+			MaxConns: 200,
+		},
+		Logs: LogsConfig{
+			LogLevel:                "debug",
+			BackendLogsToJsonFormat: false,
+			DatabaseSlowThreshold:   "1ms",
+		},
+	}
+
+}
+
 func main() {
 	// Get config struct and default variables
 	conf := GetDefaultConfig()
@@ -39,7 +88,7 @@ func main() {
 }
 ```
 
-See the [example directory](./example) for a full working example.
+See the [example directory](./example) for the full working example that you can run.
 
 Also checkout [the test file](./config_test.go) and [the source code](./config.go).
 
