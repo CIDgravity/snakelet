@@ -4,7 +4,7 @@ Ultra minimal go config lib based on [viper](https://github.com/spf13/viper).
 
 Goals:
 - simplicity => correctly validate once and return a nice statically typed struct that contains all the config
-- testability => dependency to config library only in main package. Everywhere else use pure functions and params
+- testability => dependency to config library only in main package. Everywhere else, just pass a subset of the config struct as parameter
 
 How?:
 - define whichever complex type you want for your config and setup which params are required and which are not
