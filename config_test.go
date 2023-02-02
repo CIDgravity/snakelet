@@ -56,10 +56,12 @@ func GetDefaultConfig() *Config {
 // Test that config init and load correctly with no config file
 func TestInitAndLoadNoConfig(t *testing.T) {
 	conf := GetDefaultConfig()
-	err := InitAndLoadWithParams(conf, "", "")
+	err, _ := InitAndLoad(conf, "")
+
 	if err == nil {
 		t.Fatalf(`Conf should return an error mentioning that some values are required!`)
 	}
+
 	if !strings.Contains(err.Error(), "required") {
 		t.Fatalf(`Conf should return an error mentioning that some values are required!: %e`, err)
 	}
@@ -94,7 +96,7 @@ server:
 	viper.SetFs(fs)
 
 	conf := GetDefaultConfig()
-	err = InitAndLoadWithParams(conf, filePath, "config-test")
+	err, _ = InitAndLoad(conf, filePath)
 	if err != nil {
 		t.Fatalf(`Conf should not error: %e`, err)
 	}
@@ -153,7 +155,7 @@ server:
 	viper.SetFs(fs)
 
 	conf := GetDefaultConfig()
-	err = InitAndLoadWithParams(conf, filePath, "config-test")
+	err, _ = InitAndLoad(conf, filePath)
 	if err == nil {
 		t.Fatalf(`Conf should be in error: %e`, err)
 	}
