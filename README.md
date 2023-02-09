@@ -78,7 +78,7 @@ func main() {
 	conf := GetDefaultConfig()
 
 	// this will mutate the `conf` variable:
-	err := snakelet.InitAndLoad(conf)
+	_, err := snakelet.InitAndLoad(conf)
 
 	// Example with params usage:
 	// err := snakelet.InitAndLoadWithParams(conf, "/opt/company/project.yaml", "company-project")
